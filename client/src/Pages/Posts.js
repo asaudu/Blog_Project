@@ -22,15 +22,23 @@ const Posts = (props) => {
 
     const handleDateChange = (event) => {
         const date = event.target.value;
-        setPost((student) => ({ ...student, date }));
+        setPost((post) => ({ ...post, date }));
 
     }
 
     const handlePostContentChange = (event) => {
         const post_content = event.target.value;
-        setPost((student) => ({ ...student, post_content }));
+        setPost((post) => ({ ...post, post_content }));
 
     }
+
+    const handleCategoryTypeChange = (event) => {
+        const category_type = event.target.value;
+        console.log(category_type);
+        setPost((post) => ({ ...post, category_type }));
+
+    }
+    
 
     const handleAuthorChange = (event) => {
         const author = event.target.value;
@@ -58,6 +66,13 @@ const Posts = (props) => {
         newPost(post);
         
     };
+
+    const set = (name) => {
+        return ({ target: { value } }) => {
+          setPost((oldValues) => ({ ...oldValues, [name]: value }));
+        };
+      };
+
 return (
     <div>
         <h1>Welcome to the blog! Looking forward to creating posts!</h1>
@@ -103,10 +118,10 @@ return (
 
                 /> <br/>
                 <label>Category</label>
-                <select>
+                <select onChange={set("category_type")}>
                     <option value="{post.category_type}">Select Category</option>
                     {categories.map((c) => (
-                        <option key={c}>{c}</option>
+                        <option key={c} >{c}</option>
                     ))}
                 </select> <br/>
                 <button type="submit">Publish</button>

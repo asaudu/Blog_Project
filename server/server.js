@@ -25,13 +25,34 @@ app.get('/api/posts', cors(), async (req, res) => {
     }
 });
 
+app.get('/api/signup', cors(), async (req, res) => {
+    
+    try{
+        const { rows: posts } = await db.query('SELECT * FROM signup');
+        res.send(posts);
+    } catch (e){
+        return res.status(400).json({e});
+    }
+});
+
 //create the POST request
 app.post('/api/posts', cors(), async (req, res) => {
     const newPost = { title: req.body.title, date: req.body.date, post_content: req.body.post_content, category_type: req.body.category_type, author: req.body.author }
     console.log([newPost.title, newPost.date]);
     const result = await db.query(
         'INSERT INTO posts(title, date, post_content, category_type, author) VALUES($1, $2, $3, $4, $5) RETURNING *',
-        [newPost.title, newPost.date]
+        [newPost.title, newPost.date, newPost.post_content, newPost.category_type, newPost.author]
+    );
+    console.log(result.rows[0]);
+    res.json(result.rows[0]);
+});
+
+app.post('/api/signup', cors(), async (req, res) => {
+    const newSignup = { username: req.body.username, email: req.body.email }
+    console.log([newSignup.username, newSignup.email]);
+    const result = await db.query(
+        'INSERT INTO signup(username, email) VALUES($1, $2) RETURNING *',
+        [newSignup.username, newSignup.email]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
