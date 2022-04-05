@@ -12,7 +12,8 @@ z-index: 12;
 `;
 
 export const NavLink = styled(Link)`
-color: #808080;
+//color: #E6E6FA;
+//color: #808080;
 display: flex;
 align-items: center;
 text-decoration: none;
@@ -26,6 +27,7 @@ cursor: pointer;
 
 export const Bars = styled(FaBars)`
 display: none;
+//color: #E6E6FA;
 color: #808080;
 @media screen and (max-width: 768px) {
 	display: block;

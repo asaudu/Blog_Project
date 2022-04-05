@@ -15,31 +15,23 @@ app.get('/', (req, res) => {
 });
 
 //create the get request
-app.get('/api/students', cors(), async (req, res) => {
-    // const STUDENTS = [
-
-    //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
-    //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-    //     { id: 3, firstName: 'Fariba', lastName: 'Dako' },
-    //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-    //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-    // ];
-    // res.json(STUDENTS);
+app.get('/api/posts', cors(), async (req, res) => {
+    
     try{
-        const { rows: students } = await db.query('SELECT * FROM students');
-        res.send(students);
+        const { rows: posts } = await db.query('SELECT * FROM posts');
+        res.send(posts);
     } catch (e){
         return res.status(400).json({e});
     }
 });
 
 //create the POST request
-app.post('/api/students', cors(), async (req, res) => {
-    const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
-    console.log([newUser.firstname, newUser.lastname]);
+app.post('/api/posts', cors(), async (req, res) => {
+    const newPost = { title: req.body.title, date: req.body.date, post_content: req.body.post_content, category_type: req.body.category_type, author: req.body.author }
+    console.log([newPost.title, newPost.date]);
     const result = await db.query(
-        'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
-        [newUser.firstname, newUser.lastname]
+        'INSERT INTO posts(title, date, post_content, category_type, author) VALUES($1, $2, $3, $4, $5) RETURNING *',
+        [newPost.title, newPost.date]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
