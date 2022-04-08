@@ -2,15 +2,14 @@ import { useState } from "react";
 import PosList from "../components/PostList";
 
 const Posts = (props) => {
-
-//   const initialPost = {
-//       id:null,
-//       title: "",
-//     date: "",
-//     post_content: "",
-//     category_type: "",
-//     author: ""
-//   }} = props;
+  //   const initialPost = {
+  //       id:null,
+  //       title: "",
+  //     date: "",
+  //     post_content: "",
+  //     category_type: "",
+  //     author: ""
+  //   }} = props;
 
   const categories = ["Solo Trip", "Group Trip", "Family", "Business"];
 
@@ -38,11 +37,11 @@ const Posts = (props) => {
     setPost((post) => ({ ...post, post_content }));
   };
 
-//   const handleCategoryTypeChange = (event) => {
-//     const category_type = event.target.value;
-//     console.log(category_type);
-//     setPost((post) => ({ ...post, category_type }));
-//   };
+  //   const handleCategoryTypeChange = (event) => {
+  //     const category_type = event.target.value;
+  //     console.log(category_type);
+  //     setPost((post) => ({ ...post, category_type }));
+  //   };
 
   const handleAuthorChange = (event) => {
     const author = event.target.value;
@@ -97,8 +96,6 @@ const Posts = (props) => {
     newPost(post);
   };
 
-
-
   const set = (name) => {
     return ({ target: { value } }) => {
       setPost((oldValues) => ({ ...oldValues, [name]: value }));
@@ -106,61 +103,63 @@ const Posts = (props) => {
   };
 
   return (
-    <div>
-      <h1>Welcome to the blog! Looking forward to creating posts!</h1>
-      <PosList />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <label>Post Title</label>
-          <input
-            type="text"
-            id="add-post-title"
-            placeholder="Post title"
-            required
-            value={post.title}
-            onChange={handleTitleChange}
-          />{" "}
-          <br />
-          <label>Date</label>
-          <input
-            type="date"
-            id="date"
-            required
-            value={post.date}
-            onChange={handleDateChange}
-          />{" "}
-          <br />
-          <label>Post Content</label>
-          <textarea
-            type="text"
-            id="add-post-content"
-            placeholder="Drop your concert experience here"
-            required
-            value={post.post_content}
-            onChange={handlePostContentChange}
-          />{" "}
-          <br />
-          <label>Author</label>
-          <input
-            type="text"
-            id="add-user-name"
-            placeholder="Username Here"
-            required
-            value={post.author}
-            onChange={handleAuthorChange}
-          />{" "}
-          <br />
-          <label>Category</label>
-          <select onChange={set("category_type")}>
-            <option value="{post.category_type}">Select Category</option>
-            {categories.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>{" "}
-          <br />
-          <button type="submit">Publish</button>
-        </fieldset>
-      </form>
+    <div className="transparentBox2">
+      <div>
+        <h1>Welcome to the blog! Looking forward to creating posts!</h1>
+        <PosList />
+        <form className="blogForm" onSubmit={handleSubmit}>
+          <fieldset>
+            <label>Post Title</label>
+            <input
+              type="text"
+              id="add-post-title"
+              placeholder="Post title"
+              required
+              value={post.title}
+              onChange={handleTitleChange}
+            />{" "}
+            <br />
+            <label>Date</label>
+            <input
+              type="date"
+              id="date"
+              required
+              value={post.date}
+              onChange={handleDateChange}
+            />{" "}
+            <br />
+            <label>Post Content</label>
+            <textarea
+              type="text"
+              id="add-post-content"
+              placeholder="Drop your concert experience here"
+              required
+              value={post.post_content}
+              onChange={handlePostContentChange}
+            />{" "}
+            <br />
+            <label>Author</label>
+            <input
+              type="text"
+              id="add-user-name"
+              placeholder="Username Here"
+              required
+              value={post.author}
+              onChange={handleAuthorChange}
+            />{" "}
+            <br />
+            <label>Category</label>
+            <select onChange={set("category_type")}>
+              <option value="{post.category_type}">Select Category</option>
+              {categories.map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>{" "}
+            <br />
+            <button type="submit">Publish</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 };

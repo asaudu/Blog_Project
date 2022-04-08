@@ -36,23 +36,54 @@
     transform: rotate(360deg);
   }
 } */
+/* div.transparentBox2 {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.6;
+} */
+h1 {
+  color: #dfc3a5;
+}
+
+div.transparentBox {
+  margin: 30px;
+  background-color: #dfc3a5;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.77;
+}
 
 .posts {
   list-style: none;
   text-align: center;
   color: black;
-  border-radius: 25px;
-  background-color: #dfc3a5;
-  opacity: 0.6; 
+  /* border-radius: 25px; */
+  /* background-color: #dfc3a5; */
+  /* opacity: 0.6;  */
 }
 
+.blogForm {
+  margin: 30px;
+  background-color: #dfc3a5;;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.75;
+}
+
+/* div.posts ul {
+  font-weight: bold;
+} */
+
 body {
-  background-image: url("https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80");
+  background: url("https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2412&q=80");
   background-repeat: no-repeat;
   background-size: cover;
+  /* background-opacity: 0.5; */
   
 }
 
-/* https://miro.medium.com/max/1400/1*TWUxqjtKJBOYVeQUqvQ1hQ.jpeg
-<img src="url" alt="alternatetext">
+/* https://miro.medium.com/max/1400/1*TWUxqjtKJBOYVeQUqvQ1hQ.jpeg neutral travel = https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80
+<img src="url" alt="alternatetext"> purple clouds and plane = https://images.unsplash.com/photo-1437846972679-9e6e537be46e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80
 <img src="https://miro.medium.com/max/1400/1*TWUxqjtKJBOYVeQUqvQ1hQ.jpeg" alt="plane in the sky"/> */
