@@ -66,7 +66,7 @@ const Posts = (props) => {
 
   //A function to update an existing post
   const updatePost = (existingPost) => {
-    return fetch(`/api/students/${existingPost.id}`, {
+    return fetch(`http://localhost:8080/api/posts/${existingPost.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(existingPost),
@@ -93,7 +93,11 @@ const Posts = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    newPost(post);
+    if(post.id) {
+        updatePost(post);
+    } else {
+        newPost(post);
+    }
   };
 
   const set = (name) => {
@@ -156,7 +160,7 @@ const Posts = (props) => {
               ))}
             </select>{" "}
             <br />
-            <button type="submit">Publish</button>
+            <button type="submit">{!post.id ? "Publish" : "Save"}</button>
           </fieldset>
         </form>
       </div>

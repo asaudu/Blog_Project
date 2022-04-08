@@ -9,27 +9,27 @@ function PosList(props) {
   // a state for getting the post id
   const [editingPostId, setEditingPostId] = useState(null);
 
-  //   useEffect(() => {
-  //     fetch("http://localhost:8080/api/posts")
-  //       .then((response) => response.json())
-  //       .then((posts) => {
-  //         setPosts(posts);
-  //       });
-  //   }, []);
+    useEffect(() => {
+      fetch("http://localhost:8080/api/posts")
+        .then((response) => response.json())
+        .then((posts) => {
+          setPosts(posts);
+        });
+    }, []);
 
-  const loadPosts = () => {
-    fetch("http://localhost:8080/api/posts")
-      .then((response) => response.json())
-      .then((posts) => {
-        setPosts(posts);
-      });
-  };
+//   const loadPosts = () => {
+//     fetch("http://localhost:8080/api/posts")
+//       .then((response) => response.json())
+//       .then((posts) => {
+//         setPosts(posts);
+//       });
+//   };
 
-  useEffect(() => {
-    loadPosts();
-  }, []);
+//   useEffect(() => {
+//     loadPosts();
+//   }, []);
 
-  // A function to handle the Delete functionality
+  // A function to handle the Delete functionality but this format didn't really work
   // const onDelete = (post) => {
   //     return fetch(`http://localhost:8080/api/posts/${post.id}`, {
   //         method: "DELETE"
@@ -69,6 +69,25 @@ function PosList(props) {
   //     updatePost(posts);
   //   };
 
+  // A function to really update the student 
+  const updatePost = (updatedpost) =>{
+
+    //console.log("This is the update line 41", student);
+    setPosts((posts) =>{
+      const newlistPosts = [];
+      for(let post of posts){
+        if(post.id === updatedpost.id){
+            newlistPosts.push(updatedpost);
+        } else{
+          newlistPosts.push(posts);
+        }
+      }
+      return newlistPosts;
+    })
+    // This line is only to close the form! 
+    setEditingPostId(null);
+  }
+
   const addPost = (newPost) => {
     //console.log(newPost);
     //postStudent(newPost);
@@ -82,7 +101,7 @@ function PosList(props) {
         <ul>
           {posts.map((post) => {
             if (post.id === editingPostId) {
-              return <Posts addPost={addPost} />;
+              return <Posts addPost={addPost} savePost={updatePost}/>;
             } else {
               return (
                 <li key={post.id}>
@@ -93,7 +112,7 @@ function PosList(props) {
                     }}
                   >
                     Edit
-                  </button>{" "}
+                  </button>
                   <button
                     type="button"
                     onClick={() => {
