@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,24 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.posts {
+  list-style: none;
+  text-align: center;
+  color: black;
+  border-radius: 25px;
+  background-color: #dfc3a5;
+  opacity: 0.6; 
 }
+
+body {
+  background-image: url("https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+/* https://miro.medium.com/max/1400/1*TWUxqjtKJBOYVeQUqvQ1hQ.jpeg
+<img src="url" alt="alternatetext">
+<img src="https://miro.medium.com/max/1400/1*TWUxqjtKJBOYVeQUqvQ1hQ.jpeg" alt="plane in the sky"/> */

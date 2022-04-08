@@ -1,45 +1,108 @@
 import { useState, useEffect } from "react";
-//import Form from "./form";
+import Posts from "../components/form";
+//Users/tpl_1121_1/BlogApp/client/src/Pages/Posts.js
 
-function PosList() {
+function PosList(props) {
+    //initial state
+  const [posts, setPosts] = useState([]);
 
-    const [posts, setPosts] = useState([]);
+  // a state for getting the post id
+  const [editingPostId, setEditingPostId] = useState(null);
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/posts")
-        .then((response) => response.json())
-        .then(posts =>{
-            //setStudents((students[3]));
-            //console.log("Testing", typeof students);
-            // for (let index in students){
-            //    if( index !== "3"){
-            //        setStudents(students);
-            //    }
-            // }; 
-            setPosts(posts)      
-        })
-        
-    }, []);
+//   useEffect(() => {
+//     fetch("http://localhost:8080/api/posts")
+//       .then((response) => response.json())
+//       .then((posts) => {
+//         setPosts(posts);
+//       });
+//   }, []);
 
-    
-    //Users/tpl_1121_1/BlogApp/client/src/components/PostList.js
-    // const addStudent = (newStudent) => {
-    //     //console.log(newStudent);
-    //     //postStudent(newStudent);
-    //     setStudents((students) => [...students, newStudent]);
+  
+  const loadPosts = () => {
+    fetch("http://localhost:8080/api/posts")
+      .then((response) => response.json())
+      .then((posts) => {
+        setPosts(posts);
+      });
+  };
+
+  useEffect(() => {
+      loadPosts();
+  }, []);
+  
+
+  
+
+  // A function to handle the Delete functionality
+    // const onDelete = (post) => {
+    //     return fetch(`http://localhost:8080/api/posts/${post.id}`, {
+    //         method: "DELETE"
+    //     }).then((response) =>{
+    //         //console.log(response);
+    //         if(response.ok){
+    //            loadPosts();
+    //         }
+    //     })
     // }
 
+const onDelete = async (id) => {
+    try {
+      const deleteResponse = await fetch(
+        `http://localhost:8080/api/posts/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (deleteResponse.status === 200) {
+        setPosts(posts.filter((post) => post.id !== id));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    return (
-      <div className="posts">
-        <h2> List of Posts </h2>
-        <ul>
-            {posts.map(post =>
-                <li key={post.id}> <button>Edit</button> <button>Delete</button> <strong>Title:</strong> {post.title} <strong>Date:</strong> {post.date} <strong>Blog Post:</strong> {post.post_content} <strong>Published By: </strong>{post.author} <strong>Category:</strong> {post.category_type}</li>)} <br/>
-        </ul>
-        {/* <Form addStudent={addStudent} /> */}
-      </div>
-    );
+
+  //a function to grab the post id of the student that we want to edit
+  const onEdit = (post) => {
+    const editingId = post.id;
+    console.log(editingId)
+    setEditingPostId(editingId);
+  }  
+  //handles part of the editing function but I don't think it's everything  
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     updatePost(posts);
+//   };
+
+  const addPost = (newPost) => {
+      //console.log(newPost);
+      //postStudent(newPost);
+      setPosts((posts) => [...posts, newPost]);
   }
-  
-  export default PosList;
+
+  return (
+    <div className="posts">
+      <h2> List of Posts </h2>
+      <ul>
+        {posts.map((post) => {
+            if(post.id === editingPostId) {
+                return <Posts addPost={addPost} />
+            } else {
+                return ( <li key={post.id}>
+                    <button type="button" onClick={()=>{onEdit(post)}}>Edit</button> <button type="button" onClick={() => {onDelete(post.id)}}>Delete</button>
+                    <strong>Title:</strong> {post.title} <strong>Date:</strong>
+                    {post.date} <strong>Blog Post:</strong> {post.post_content}
+                    <strong>Published By: </strong>
+                    {post.author} <strong>Category:</strong> {post.category_type}
+                  </li>)
+            }}
+         
+        )}
+        <br />
+      </ul>
+      {/* <Form addStudent={addStudent} /> */}
+    </div>
+  );
+}
+
+export default PosList;
