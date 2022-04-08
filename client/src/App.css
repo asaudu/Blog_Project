@@ -70,11 +70,19 @@ div.transparentBox {
 }
 
 .blogForm {
-  margin: 30px;
+  margin: 25px;
   background-color: #dfc3a5;;
   border: 1px solid black;
   border-radius: 25px;
   opacity: 0.75;
+}
+
+p {
+  margin: 30px;
+  background-color: #dfc3a5;
+  border: 1px solid black;
+  border-radius: 15px;
+  opacity: 0.77;
 }
 
 /* div.posts ul {

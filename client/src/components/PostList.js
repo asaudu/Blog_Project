@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Posts from "../components/form";
+import EditForm from "./editForm";
 //Users/tpl_1121_1/BlogApp/client/src/Pages/Posts.js
 
 function PosList(props) {
@@ -63,6 +64,7 @@ function PosList(props) {
     console.log(editingId);
     setEditingPostId(editingId);
   };
+
   //handles part of the editing function but I don't think it's everything
   //   const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -70,7 +72,7 @@ function PosList(props) {
   //   };
 
   // A function to really update the student 
-  const updatePost = (updatedpost) =>{
+  const updatePost = (updatedpost) => {
 
     //console.log("This is the update line 41", student);
     setPosts((posts) =>{
@@ -101,7 +103,7 @@ function PosList(props) {
         <ul>
           {posts.map((post) => {
             if (post.id === editingPostId) {
-              return <Posts addPost={addPost} savePost={updatePost}/>;
+              return <EditForm addPost={addPost} savePost={updatePost}/>;
             } else {
               return (
                 <li key={post.id}>

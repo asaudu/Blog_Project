@@ -42,7 +42,7 @@ const Home = (props) => {
 return (
 	<div>
 	<h1>May need to be retitled Landing page or straight up Home.js</h1>
-	<form onSubmit={handleSubmit}>
+	<form className="blogForm" onSubmit={handleSubmit}>
 		<fieldset>
 		<label>Username</label>
                 <input
